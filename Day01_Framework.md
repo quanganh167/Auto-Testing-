@@ -71,15 +71,9 @@ Nguồn:
 - https://playwright.dev/docs/writing-tests
 - https://playwright.dev/docs/trace-viewer
 
-## 3. So sánh ngắn
 
-Project hiện tại của em sử dụng Java và Selenium. Cucumber, Serenity BDD và Screenplay có thể kết hợp với Selenium để tổ chức kịch bản và tạo báo cáo.
 
-Playwright Test là một hướng triển khai khác, có sẵn trình chạy test, assertion và các công cụ hỗ trợ phân tích kết quả.
-
-Hai hướng đều phục vụ kiểm thử tự động nhưng khác cách tổ chức và triển khai. Việc lựa chọn cần dựa trên yêu cầu môn học, ngôn ngữ sử dụng và nhu cầu của dự án.
-
-## 4. Câu hỏi
+## 3. Câu hỏi
 
 ### Automation test là gì?
 
