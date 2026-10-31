@@ -1,4 +1,7 @@
- 1. Checkout: Overview:
+
+## 1. Checkout: Overview
+
+```xpath
 //span[contains(text(),'Checkout')]
 //div[text()='QTY']
 //div[text()='Description']
@@ -21,15 +24,23 @@
 //div[contains(text(),'Total:')]
 //button[text()='Cancel']
 //button[text()='Finish']
+```
 
-2. Checkout: Complete! 
+## 2. Checkout: Complete!
+
+```xpath
 //span[contains(text(),'Checkout')]
 //h2[contains(text(),'Thank')]
 //div[contains(text(),'Your order')]
 //button[@id='back-to-products']
 //button[contains(@id,'generate')]
+```
 
-3. Tìm tất cả locator trong đường dẫn sau: https://saucelabs.com/request-demo
+## 3. Tìm tất cả locator trong đường dẫn sau
+
+**Website:** [Sauce Labs - Request Demo](https://saucelabs.com/request-demo)
+
+```xpath
 //div[@class='v2-rd-form-card']
 //h3[contains(text(),'demo')]
 //input[contains(@name,'Email')]
@@ -38,3 +49,4 @@
 //textarea[@id='Comments']
 //button[contains(text(),'request')]
 //p[contains(text(),'pick a time')]
+```
