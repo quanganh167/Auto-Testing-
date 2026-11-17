@@ -59,7 +59,6 @@ public class BookDemoExcelTest {
     private static int skipped;
 
     public static void main(String[] args) {
-        // Dùng hàm đọc Excel trong bài học.
         List<Map<String, String>> testCases =
                 ExcelUtils.readExcelData(EXCEL_FILE, "Sheet1");
         if (testCases.isEmpty()) {
@@ -88,13 +87,10 @@ public class BookDemoExcelTest {
     private static void runTestCase(Map<String, String> data) {
         String testName = value(data, "Test ID");
         try {
-            // ExcelUtils của bài học có trim(), nên ba dấu cách thành chuỗi rỗng.
-            // Riêng TC-11, đặt lại ba dấu cách theo kịch bản kiểm thử đã định.
-            // Đây là dữ liệu đặt trong class test, không phải giá trị thô từ Excel.
+        
             if (testName.equals("TC-11") && value(data, "Business Email").isEmpty()) {
                 data.put("Business Email", "   ");
             }
-            // Mở lại form cho mỗi dòng dữ liệu Excel.
             openFormAndFill(data);
 
             if ((testName.equals("TC-03")) || (testName.equals("TC-11"))) {
@@ -149,7 +145,6 @@ public class BookDemoExcelTest {
                 ExpectedConditions.visibilityOfElementLocated(EMAIL)
         ), value(data, "Business Email"));
 
-        // Rời ô email để kích hoạt hiển thị các trường còn lại.
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(COMPANY)
         ).click();
@@ -248,7 +243,6 @@ public class BookDemoExcelTest {
                 ExpectedConditions.visibilityOfElementLocated(target)
         );
         boolean targetMissing = validityState(targetElement, "valueMissing");
-        // Các trường khác phải hợp lệ để tránh PASS sai lý do.
         boolean othersValid = allRequiredFieldsValid(
                 value(data, "Country"), target
         );
@@ -349,7 +343,6 @@ public class BookDemoExcelTest {
             return;
         }
         comments.clear();
-        // Nhập vượt giới hạn một ký tự để kiểm tra maxlength.
         comments.sendKeys("A".repeat(maxLength + 1));
         String actualText = comments.getDomProperty("value");
         boolean withinLimit = actualText.length() <= maxLength;
@@ -412,7 +405,6 @@ public class BookDemoExcelTest {
                 && value(data, "State").equals(selectedText(STATE))
                 && isValid(state);
 
-        // Đổi quốc gia để kiểm tra State được ẩn và không còn bắt buộc.
         new Select(driver.findElement(COUNTRY)).selectByVisibleText("Vietnam");
         wait.until(ExpectedConditions.invisibilityOfElementLocated(STATE));
         boolean stateNotRequired = driver.findElements(STATE).stream()
@@ -448,7 +440,6 @@ public class BookDemoExcelTest {
         }
 
         button.click();
-        // Kiểm tra URL và tiêu đề trang cảm ơn sau khi gửi.
         String outcome = wait.until(d -> {
             boolean successVisible = THANK_YOU_URL.equals(d.getCurrentUrl())
                     && d.findElements(SUCCESS_MESSAGE)
@@ -475,8 +466,6 @@ public class BookDemoExcelTest {
         }
     }
 
-
-    // TC-20: Nhập Comments rồi xóa; kiểm tra ô rỗng vẫn hợp lệ.
     private static void checkClearComments(String name, Map<String, String> data) {
         WebElement comments = driver.findElement(COMMENTS);
         boolean entered = value(data, "Comments (optional)").equals(comments.getDomProperty("value"));
@@ -506,7 +495,7 @@ public class BookDemoExcelTest {
     private static boolean allRequiredFieldsValid(
             String country,
             By excludedField) {
-        // State bắt buộc khi chọn United States.
+
         List<By> fields = new ArrayList<>(List.of(
                 EMAIL, FIRST_NAME, LAST_NAME, COMPANY,
                 PHONE, COUNTRY, USE_CASE
@@ -529,7 +518,6 @@ public class BookDemoExcelTest {
         return true;
     }
 
-    // Đọc kết quả validation HTML của trường.
     private static boolean isValid(WebElement element) {
         return (Boolean) js.executeScript(
                 "return arguments[0].checkValidity();", element
@@ -571,7 +559,7 @@ public class BookDemoExcelTest {
         return data.getOrDefault(columnName, "");
     }
 
-    // Expected Result là mô tả tiếng Việt để in; result là kết quả kiểm tra thực tế.
+
     private static void report(
             boolean result,
             String testName,
